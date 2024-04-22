@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ali & Shanzay</title>
+
+  <link href="./bootstrap.min.css" rel="stylesheet">
+  <script src="./bootstrap.bundle.min.js"></script>
+  <script src="./jquery-3.7.1.min.js"></script>
+
+  <link rel="shortcut icon" href="./logo.png" type="image/x-icon">
+
+  <style>
+    @font-face {
+      font-family: 'Fira Sans';
+      src: url('./FiraSans-Font.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  
+    @font-face {
+      font-family: 'Kode Mono';
+      src: url('./KodeMono.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --theme-bg-dark: 33, 37, 41;
+      --theme-bg-dark-primary: 52, 58, 64;
+      --theme-bg-dark-secondary: 73, 80, 87;
+      --theme-text-dark: 255, 255, 255;
+
+      /* default theme */
+      --theme: var(--theme-bg-dark);
+      --theme-primary: var(--theme-bg-dark-primary);
+      --theme-secondary: var(--theme-bg-dark-secondary);
+      --theme-text: var(--theme-text-dark);
+    }
+  
+    body, html {
+  
+      font-family: 'Fira Sans', sans-serif;
+      font-size: 16px;
+      position: relative;
+      margin: 0;
+      opacity: 1;
+      background-image: radial-gradient(rgba(var(--theme-text),0.3) 0.5px, rgba(var(--theme)) 0.5px);
+      background-size: 10px 10px;
+    }
+
+    #timercard {
+      border: none;
+      transition: transform 0.2s;
+    }
+
+    .number {
+      font-family: 'Kode Mono', monospace;
+    }
+  </style>
+</head>
+<body data-bs-theme="dark" class="d-flexflex-column align-items-center justify-content-center">
+  <div id="timercard" class="card text-center m-5">
+    <div class="card-body p-5">
+      <h5 class="card-title h2 mb-4">Shanzuuuu's Birthday! 🎂</h5>
+      <p class="card-text h5 number" id="timer"></p>
+    </div>
+  </div>
+
+  <div class="d-none card text-center shadow-lg mt-2 afterbirthday">
+    <div class="card-body p-5">
+      <h5 class="card-title h2 mb-4">Happy Birthday Shanzuuuu!</h5>
+      <h5 class="card-title h2 mb-4">🎂 🎈 🎉</h5>
+      <p class="card-text h4">I Love You, My darling, My Life, My Partner 🎈</p>
+      <p class="card-text">Ever since I have met you my life has changed, for the better. I am so grateful meri jaan u know i was never this kind of person that you made. I care about you a lot and I hope we are truly together ver very soon. I hope this birthday brings you all the happiness you deserve. I love you so much. Happy Birthday Shanzuuuu 🎉</p>
+    </div>
+  </div>
+
+  <div class="d-none card text-center shadow-lg mt-2 afterbirthday">
+    <!-- video here -->
+    
+    <video width="100%" height="auto" controls>
+      <source src="./1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="d-none card text-center shadow-lg mt-2 afterbirthday">
+    <!-- video here -->
+    
+    <video width="100%" height="auto" controls>
+      <source src="./2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="d-none card text-center shadow-lg mt-2 afterbirthday">
+    <!-- video here -->
+    
+    <video width="100%" height="auto" controls>
+      <source src="./3.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script>
+    const birthday = new Date('2024-04-23T00:00:00');
+    const timer = document.getElementById('timer');
+
+    function isAfterBirthday() {
+      $('#timercard').addClass('d-none');
+      $('.afterbirthday').each(function() {
+        $(this).removeClass('d-none');
+      });
+    }
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = birthday - now;
+
+      if (diff <= 0) {
+        isAfterBirthday();
+        timer.textContent = 'Happy Birthday Shanzuuuu! 🎉';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s to go 🎉`;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
